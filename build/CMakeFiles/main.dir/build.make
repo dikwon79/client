@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dongil/work/programming101dev/templates/template-c
+CMAKE_SOURCE_DIR = /home/dongil/CLionProjects/term4/client
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dongil/work/programming101dev/templates/template-c/build
+CMAKE_BINARY_DIR = /home/dongil/CLionProjects/term4/client/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -72,16 +72,16 @@ include CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main.c.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main.c.o: ../src/main.c
 CMakeFiles/main.dir/src/main.c.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dongil/work/programming101dev/templates/template-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/main.dir/src/main.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.dir/src/main.c.o -MF CMakeFiles/main.dir/src/main.c.o.d -o CMakeFiles/main.dir/src/main.c.o -c /home/dongil/work/programming101dev/templates/template-c/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dongil/CLionProjects/term4/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/main.dir/src/main.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/main.dir/src/main.c.o -MF CMakeFiles/main.dir/src/main.c.o.d -o CMakeFiles/main.dir/src/main.c.o -c /home/dongil/CLionProjects/term4/client/src/main.c
 
 CMakeFiles/main.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/main.dir/src/main.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dongil/work/programming101dev/templates/template-c/src/main.c > CMakeFiles/main.dir/src/main.c.i
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dongil/CLionProjects/term4/client/src/main.c > CMakeFiles/main.dir/src/main.c.i
 
 CMakeFiles/main.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/main.dir/src/main.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dongil/work/programming101dev/templates/template-c/src/main.c -o CMakeFiles/main.dir/src/main.c.s
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dongil/CLionProjects/term4/client/src/main.c -o CMakeFiles/main.dir/src/main.c.s
 
 # Object files for target main
 main_OBJECTS = \
@@ -93,12 +93,12 @@ main_EXTERNAL_OBJECTS =
 main: CMakeFiles/main.dir/src/main.c.o
 main: CMakeFiles/main.dir/build.make
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dongil/work/programming101dev/templates/template-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dongil/CLionProjects/term4/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Running clang-tidy"
-	cd /home/dongil/work/programming101dev/templates/template-c && /usr/bin/clang-tidy /home/dongil/work/programming101dev/templates/template-c/src/main.c -quiet --warnings-as-errors='*' -checks=*,-llvmlibc-restrict-system-libc-headers,-altera-struct-pack-align,-readability-identifier-length,-altera-unroll-loops,-cppcoreguidelines-init-variables,-cert-err33-c,-modernize-macro-to-enum,-bugprone-easily-swappable-parameters,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,-altera-id-dependent-backward-branch,-concurrency-mt-unsafe,-misc-unused-parameters,-hicpp-signed-bitwise,-google-readability-todo,-cert-msc30-c,-cert-msc50-cpp,-readability-function-cognitive-complexity,-clang-analyzer-security.insecureAPI.strcpy,-cert-env33-c,-android-cloexec-accept,-clang-analyzer-security.insecureAPI.rand,-misc-include-cleaner,-llvm-header-guard -- -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D_GNU_SOURCE -D_DARWIN_C_SOURCE -D__BSD_VISIBLE -Werror -I/home/dongil/work/programming101dev/templates/template-c/include -I/usr/local/include
+	cd /home/dongil/CLionProjects/term4/client && /usr/bin/clang-tidy /home/dongil/CLionProjects/term4/client/src/main.c -quiet --warnings-as-errors='*' -checks=*,-llvmlibc-restrict-system-libc-headers,-altera-struct-pack-align,-readability-identifier-length,-altera-unroll-loops,-cppcoreguidelines-init-variables,-cert-err33-c,-modernize-macro-to-enum,-bugprone-easily-swappable-parameters,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,-altera-id-dependent-backward-branch,-concurrency-mt-unsafe,-misc-unused-parameters,-hicpp-signed-bitwise,-google-readability-todo,-cert-msc30-c,-cert-msc50-cpp,-readability-function-cognitive-complexity,-clang-analyzer-security.insecureAPI.strcpy,-cert-env33-c,-android-cloexec-accept,-clang-analyzer-security.insecureAPI.rand,-misc-include-cleaner,-llvm-header-guard -- -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -D_GNU_SOURCE -D_DARWIN_C_SOURCE -D__BSD_VISIBLE -Werror -I/home/dongil/CLionProjects/term4/client/include -I/usr/local/include
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Running cppcheck"
-	cd /home/dongil/work/programming101dev/templates/template-c && /usr/bin/cppcheck --error-exitcode=1 --force --quiet --inline-suppr --library=posix --enable=all --suppress=missingIncludeSystem --suppress=unusedFunction --suppress=unmatchedSuppression --suppress=checkersReport -I/home/dongil/work/programming101dev/templates/template-c/include -I/usr/local/include /home/dongil/work/programming101dev/templates/template-c/src/main.c
+	cd /home/dongil/CLionProjects/term4/client && /usr/bin/cppcheck --error-exitcode=1 --force --quiet --inline-suppr --library=posix --enable=all --suppress=missingIncludeSystem --suppress=unusedFunction --suppress=unmatchedSuppression --suppress=checkersReport -I/home/dongil/CLionProjects/term4/client/include -I/usr/local/include /home/dongil/CLionProjects/term4/client/src/main.c
 
 # Rule to build all files generated by this target.
 CMakeFiles/main.dir/build: main
@@ -109,6 +109,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /home/dongil/work/programming101dev/templates/template-c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dongil/work/programming101dev/templates/template-c /home/dongil/work/programming101dev/templates/template-c /home/dongil/work/programming101dev/templates/template-c/build /home/dongil/work/programming101dev/templates/template-c/build /home/dongil/work/programming101dev/templates/template-c/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dongil/CLionProjects/term4/client/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dongil/CLionProjects/term4/client /home/dongil/CLionProjects/term4/client /home/dongil/CLionProjects/term4/client/build /home/dongil/CLionProjects/term4/client/build /home/dongil/CLionProjects/term4/client/build/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 
