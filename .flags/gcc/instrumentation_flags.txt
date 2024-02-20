@@ -1,0 +1,1 @@
+-fno-sanitize-recover=all -fno-stack-limit -fsanitize=unreachable -fstack-protector -fstack-protector-all -fstack-protector-strong -ftls-model=global-dynamic -fvtv-debug -fcf-protection=full
