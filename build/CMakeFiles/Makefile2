@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dongil/CLionProjects/term4/client
+CMAKE_SOURCE_DIR = /home/dongil/work/programming101dev/templates/assignment2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dongil/CLionProjects/term4/client/build
+CMAKE_BINARY_DIR = /home/dongil/work/programming101dev/templates/assignment2/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -82,14 +82,14 @@ clean: CMakeFiles/format.dir/clean
 CMakeFiles/main.dir/all: CMakeFiles/format.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dongil/CLionProjects/term4/client/build/CMakeFiles --progress-num=2,3 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles --progress-num=2,3 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/CLionProjects/term4/client/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/CLionProjects/term4/client/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
 
 # Convenience name for target.
@@ -108,14 +108,14 @@ CMakeFiles/main.dir/clean:
 CMakeFiles/format.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/format.dir/build.make CMakeFiles/format.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/format.dir/build.make CMakeFiles/format.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dongil/CLionProjects/term4/client/build/CMakeFiles --progress-num=1 "Built target format"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles --progress-num=1 "Built target format"
 .PHONY : CMakeFiles/format.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/format.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/CLionProjects/term4/client/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles 1
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/format.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/CLionProjects/term4/client/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles 0
 .PHONY : CMakeFiles/format.dir/rule
 
 # Convenience name for target.

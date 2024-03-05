@@ -1,4 +1,4 @@
-# Install script for directory: /home/dongil/CLionProjects/term4/client
+# Install script for directory: /home/dongil/work/programming101dev/templates/assignment2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dongil/CLionProjects/term4/client/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/dongil/work/programming101dev/templates/assignment2/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

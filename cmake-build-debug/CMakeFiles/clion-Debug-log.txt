@@ -1,0 +1,35 @@
+/opt/Clion/clion-2023.2.2/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/Clion/clion-2023.2.2/bin/ninja/linux/x64/ninja -G Ninja -S /home/dongil/work/programming101dev/templates/template-c -B /home/dongil/work/programming101dev/templates/template-c/cmake-build-debug
+-- Compiler being used: /usr/bin/cc
+C Compiler: /usr/bin/cc
+COMPILER_NAME: cc
+CMake Error at CMakeLists.txt:59 (file):
+  file STRINGS file
+  "/home/dongil/work/programming101dev/templates/template-c/.flags/cc/analyzer_flags.txt"
+  cannot be read.
+
+
+CMake Error at CMakeLists.txt:62 (file):
+  file STRINGS file
+  "/home/dongil/work/programming101dev/templates/template-c/.flags/cc/debug_flags.txt"
+  cannot be read.
+
+
+CMake Error at CMakeLists.txt:65 (file):
+  file STRINGS file
+  "/home/dongil/work/programming101dev/templates/template-c/.flags/cc/instrumentation_flags.txt"
+  cannot be read.
+
+
+CMake Error at CMakeLists.txt:68 (file):
+  file STRINGS file
+  "/home/dongil/work/programming101dev/templates/template-c/.flags/cc/optimization_flags.txt"
+  cannot be read.
+
+
+CMake Error at CMakeLists.txt:71 (file):
+  file STRINGS file
+  "/home/dongil/work/programming101dev/templates/template-c/.flags/cc/warning_flags.txt"
+  cannot be read.
+
+
+-- Configuring incomplete, errors occurred!

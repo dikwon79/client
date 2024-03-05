@@ -37,6 +37,11 @@ endif()
 target_link_directories(main PRIVATE /usr/local/lib${LIBSUFFIX})
 target_link_options(main PRIVATE ${INSTRUMENTATION_FLAGS_LIST})
 
+find_library(LIB_ncurses NAMES ncurses)
+
+if(LIB_ncurses)
+    target_link_libraries(main PRIVATE ${LIB_ncurses})
+endif()
 
 message("C Compiler: ${CMAKE_C_COMPILER}")
 get_filename_component(COMPILER_NAME "${CMAKE_C_COMPILER}" NAME_WE)

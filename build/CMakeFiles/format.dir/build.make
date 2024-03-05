@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dongil/CLionProjects/term4/client
+CMAKE_SOURCE_DIR = /home/dongil/work/programming101dev/templates/assignment2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dongil/CLionProjects/term4/client/build
+CMAKE_BINARY_DIR = /home/dongil/work/programming101dev/templates/assignment2/build
 
 # Utility rule file for format.
 
@@ -67,8 +67,8 @@ include CMakeFiles/format.dir/compiler_depend.make
 include CMakeFiles/format.dir/progress.make
 
 CMakeFiles/format:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/dongil/CLionProjects/term4/client/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running clang-format"
-	cd /home/dongil/CLionProjects/term4/client && /usr/bin/clang-format --style=file -i /home/dongil/CLionProjects/term4/client/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running clang-format"
+	cd /home/dongil/work/programming101dev/templates/assignment2 && /usr/bin/clang-format --style=file -i /home/dongil/work/programming101dev/templates/assignment2/src/main.c
 
 format: CMakeFiles/format
 format: CMakeFiles/format.dir/build.make
@@ -83,6 +83,6 @@ CMakeFiles/format.dir/clean:
 .PHONY : CMakeFiles/format.dir/clean
 
 CMakeFiles/format.dir/depend:
-	cd /home/dongil/CLionProjects/term4/client/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dongil/CLionProjects/term4/client /home/dongil/CLionProjects/term4/client /home/dongil/CLionProjects/term4/client/build /home/dongil/CLionProjects/term4/client/build /home/dongil/CLionProjects/term4/client/build/CMakeFiles/format.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/dongil/work/programming101dev/templates/assignment2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/dongil/work/programming101dev/templates/assignment2 /home/dongil/work/programming101dev/templates/assignment2 /home/dongil/work/programming101dev/templates/assignment2/build /home/dongil/work/programming101dev/templates/assignment2/build /home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles/format.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/format.dir/depend
 
