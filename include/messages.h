@@ -12,5 +12,6 @@ struct clientinfo
 };
 
 void *receive_messages(void *arg);
+int   count_newlines(const char *message);
 
 #endif /* MESSAGES_H */

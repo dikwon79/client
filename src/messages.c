@@ -6,6 +6,22 @@
 
 #define screenMaxline 22
 
+int count_newlines(const char *message)
+{
+    int    count  = 0;
+    size_t length = strlen(message);
+
+    for(size_t i = 0; i < length; ++i)
+    {
+        if(message[i] == '\n')
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
+
 void *receive_messages(void *arg)
 {
     struct clientinfo *args   = (struct clientinfo *)arg;
@@ -48,6 +64,8 @@ void *receive_messages(void *arg)
         }
         move(args->screenOrder++, 0);
         addstr(message);
+        int newline_count = count_newlines(message);
+        args->screenOrder = args->screenOrder + newline_count;
         refresh();
         move(args->inputPointer, (int)strlen(input_message));
         attroff(COLOR_PAIR(2));

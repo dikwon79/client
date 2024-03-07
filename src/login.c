@@ -73,4 +73,5 @@ void show_login_form()
 
     // ncurses 종료
     endwin();
+
 }

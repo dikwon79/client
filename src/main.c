@@ -15,6 +15,7 @@
 #include <unistd.h>
 
 #define screenMaxline 22
+#define screenStart 0
 
 int main(int args, char *argv[])
 {
@@ -54,7 +55,7 @@ int main(int args, char *argv[])
 
     sockfd = socket_create(addr.ss_family, SOCK_STREAM, 0);
     socket_connect(sockfd, &addr, port);
-    struct clientinfo clientinfo = {sockfd, 0, row - 1};
+    struct clientinfo clientinfo = {sockfd, screenStart, row - 1};
 
     start_color();                              // 컬러 모드 활성화
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);    // 노란색 색상 쌍 초기화
