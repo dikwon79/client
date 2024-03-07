@@ -1,1 +1,1 @@
-main src/main.c src/arguments.c src/messages.c src/socket.c src/utils.c include/arguments.h include/socket.h include/utils.h include/messages.h ncurses
+main src/main.c src/login.c src/arguments.c src/messages.c src/socket.c src/utils.c include/login.h include/arguments.h include/socket.h include/utils.h include/messages.h ncurses

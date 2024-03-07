@@ -12,10 +12,12 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
 list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/main.c)
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/login.c)
 list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/arguments.c)
 list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/messages.c)
 list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/socket.c)
 list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/utils.c)
+list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/login.h)
 list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/arguments.h)
 list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/socket.h)
 list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/utils.h)
@@ -23,6 +25,7 @@ list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/messages.h)
 
 set(main_SOURCES
     ${CMAKE_SOURCE_DIR}/src/main.c
+    ${CMAKE_SOURCE_DIR}/src/login.c
     ${CMAKE_SOURCE_DIR}/src/arguments.c
     ${CMAKE_SOURCE_DIR}/src/messages.c
     ${CMAKE_SOURCE_DIR}/src/socket.c
@@ -30,6 +33,7 @@ set(main_SOURCES
 )
 
 set(main_HEADERS
+    ${CMAKE_SOURCE_DIR}/include/login.h
     ${CMAKE_SOURCE_DIR}/include/arguments.h
     ${CMAKE_SOURCE_DIR}/include/socket.h
     ${CMAKE_SOURCE_DIR}/include/utils.h

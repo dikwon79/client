@@ -1,6 +1,6 @@
 #ifndef MESSAGES_H
 #define MESSAGES_H
-#define BUF_SIZE 30
+#define BUF_SIZE 2048
 
 #include <ncurses.h>
 
