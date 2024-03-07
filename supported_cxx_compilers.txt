@@ -1,1 +1,0 @@
-/home/dongil/work/programming101dev/scripts/supported_cxx_compilers.txt

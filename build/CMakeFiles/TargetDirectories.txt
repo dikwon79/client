@@ -1,4 +1,0 @@
-/home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles/main.dir
-/home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles/format.dir
-/home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles/edit_cache.dir
-/home/dongil/work/programming101dev/templates/assignment2/build/CMakeFiles/rebuild_cache.dir

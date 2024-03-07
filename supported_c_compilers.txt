@@ -1,1 +1,2 @@
-/home/dongil/work/programming101dev/scripts/supported_c_compilers.txt
+gcc
+clang
