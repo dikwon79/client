@@ -6,10 +6,18 @@
 #define height 10
 #define size 50
 
-void show_login_form()
+void show_login_form(void)
 {
-    char username[size];
-    char password[size];
+    char    username[size];
+    char    password[size];
+    int     rows;
+    int     cols;
+    int     form_height;
+    int     form_width;
+    int     starty;
+    int     startx;
+    WINDOW *login_form;
+    WINDOW *my_win;
 
     initscr();    // ncurses 초기화
     cbreak();     // 키 입력을 즉시 반응하도록 설정
@@ -20,18 +28,17 @@ void show_login_form()
     init_pair(2, COLOR_RED, COLOR_BLACK);     // 빨간색 텍스트, 검은색 배경
 
     // 화면 크기 얻기
-    int rows;
-    int cols;
+
     getmaxyx(stdscr, rows, cols);
 
     // 로그인 폼 크기 및 위치 계산
-    int form_height = height;
-    int form_width  = width;
-    int starty      = (rows - form_height) / 2;    // 폼 시작 y 위치
-    int startx      = (cols - form_width) / 2;     // 폼 시작 x 위치
+    form_height = height;
+    form_width  = width;
+    starty      = (rows - form_height) / 2;    // 폼 시작 y 위치
+    startx      = (cols - form_width) / 2;     // 폼 시작 x 위치
 
     // 새로운 윈도우 생성
-    WINDOW *my_win = newwin(4, form_width, starty - 4, startx);
+    my_win = newwin(4, form_width, starty - 4, startx);
 
     // 박스 그리기
 
@@ -43,7 +50,7 @@ void show_login_form()
     // 윈도우에 적용
     wrefresh(my_win);
     // 로그인 폼 박스 생성
-    WINDOW *login_form = newwin(form_height, form_width, starty, startx);
+    login_form = newwin(form_height, form_width, starty, startx);
 
     box(login_form, 0, 0);    // 박스 그리기
 
@@ -73,5 +80,4 @@ void show_login_form()
 
     // ncurses 종료
     endwin();
-
 }

@@ -6,43 +6,12 @@ project(main
         LANGUAGES C)
 
 message(STATUS "Compiler being used: ${CMAKE_C_COMPILER}")
+get_filename_component(COMPILER_NAME "${CMAKE_C_COMPILER}" NAME_WE)
+message("COMPILER_NAME: ${COMPILER_NAME}")
 
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
-
-list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/main.c)
-list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/login.c)
-list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/arguments.c)
-list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/messages.c)
-list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/socket.c)
-list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/utils.c)
-list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/login.h)
-list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/arguments.h)
-list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/socket.h)
-list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/utils.h)
-list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/messages.h)
-
-set(main_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/main.c
-    ${CMAKE_SOURCE_DIR}/src/login.c
-    ${CMAKE_SOURCE_DIR}/src/arguments.c
-    ${CMAKE_SOURCE_DIR}/src/messages.c
-    ${CMAKE_SOURCE_DIR}/src/socket.c
-    ${CMAKE_SOURCE_DIR}/src/utils.c
-)
-
-set(main_HEADERS
-    ${CMAKE_SOURCE_DIR}/include/login.h
-    ${CMAKE_SOURCE_DIR}/include/arguments.h
-    ${CMAKE_SOURCE_DIR}/include/socket.h
-    ${CMAKE_SOURCE_DIR}/include/utils.h
-    ${CMAKE_SOURCE_DIR}/include/messages.h
-)
-
-add_executable(main ${main_SOURCES})
-target_include_directories(main PUBLIC ${CMAKE_SOURCE_DIR}/include)
-target_include_directories(main PRIVATE /usr/local/include)
 
 # Check if the system uses 64-bit libraries
 get_property(LIB64 GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS)
@@ -54,18 +23,44 @@ else()
     set(LIBSUFFIX "")
 endif()
 
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/main.c)
+list(APPEND main_SOURCES ${CMAKE_SOURCE_DIR}/src/main.c)
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/login.c)
+list(APPEND main_SOURCES ${CMAKE_SOURCE_DIR}/src/login.c)
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/arguments.c)
+list(APPEND main_SOURCES ${CMAKE_SOURCE_DIR}/src/arguments.c)
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/messages.c)
+list(APPEND main_SOURCES ${CMAKE_SOURCE_DIR}/src/messages.c)
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/socket.c)
+list(APPEND main_SOURCES ${CMAKE_SOURCE_DIR}/src/socket.c)
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/utils.c)
+list(APPEND main_SOURCES ${CMAKE_SOURCE_DIR}/src/utils.c)
+list(APPEND SOURCES ${CMAKE_SOURCE_DIR}/src/binary.c)
+list(APPEND main_SOURCES ${CMAKE_SOURCE_DIR}/src/binary.c)
+list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/binary.h)
+list(APPEND main_HEADERS ${CMAKE_SOURCE_DIR}/include/binary.h)
+list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/login.h)
+list(APPEND main_HEADERS ${CMAKE_SOURCE_DIR}/include/login.h)
+list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/arguments.h)
+list(APPEND main_HEADERS ${CMAKE_SOURCE_DIR}/include/arguments.h)
+list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/socket.h)
+list(APPEND main_HEADERS ${CMAKE_SOURCE_DIR}/include/socket.h)
+list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/utils.h)
+list(APPEND main_HEADERS ${CMAKE_SOURCE_DIR}/include/utils.h)
+list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/messages.h)
+list(APPEND main_HEADERS ${CMAKE_SOURCE_DIR}/include/messages.h)
+add_executable(main ${main_SOURCES})
+target_include_directories(main PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(main PRIVATE /usr/local/include)
+
 target_link_directories(main PRIVATE /usr/local/lib${LIBSUFFIX})
 target_link_options(main PRIVATE ${INSTRUMENTATION_FLAGS_LIST})
 
 find_library(LIB_ncurses NAMES ncurses)
-
 if(LIB_ncurses)
     target_link_libraries(main PRIVATE ${LIB_ncurses})
 endif()
 
-message("C Compiler: ${CMAKE_C_COMPILER}")
-get_filename_component(COMPILER_NAME "${CMAKE_C_COMPILER}" NAME_WE)
-message("COMPILER_NAME: ${COMPILER_NAME}")
 
 function(split_string_into_list _input_string _output_list)
     string(REGEX REPLACE "[ ]+" ";" _split_list "${_input_string}")
@@ -74,6 +69,9 @@ endfunction()
 
 file(STRINGS "${CMAKE_SOURCE_DIR}/.flags/${COMPILER_NAME}/analyzer_flags.txt" ANALYZER_FLAGS_STRING)
 split_string_into_list("${ANALYZER_FLAGS_STRING}" ANALYZER_FLAGS_LIST)
+
+file(STRINGS "${CMAKE_SOURCE_DIR}/.flags/${COMPILER_NAME}/code_generation_flags.txt" CODE_GENERATION_FLAGS_STRING)
+split_string_into_list("${CODE_GENERATION_FLAGS_STRING}" CODE_GENERATION_FLAGS_LIST)
 
 file(STRINGS "${CMAKE_SOURCE_DIR}/.flags/${COMPILER_NAME}/debug_flags.txt" DEBUG_FLAGS_STRING)
 split_string_into_list("${DEBUG_FLAGS_STRING}" DEBUG_FLAGS_LIST)
@@ -88,6 +86,7 @@ file(STRINGS "${CMAKE_SOURCE_DIR}/.flags/${COMPILER_NAME}/warning_flags.txt" WAR
 split_string_into_list("${WARNING_FLAGS_STRING}" WARNING_FLAGS_LIST)
 
 if(SANITIZER_address STREQUAL "ON")
+    message(STATUS "SANITIZER_address is ON")
     file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/address_sanitizer_flags.txt" ADDRESS_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" ADDRESS_SANITIZER_FLAGS_LIST "${ADDRESS_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${ADDRESS_SANITIZER_FLAGS_LIST})
@@ -95,55 +94,79 @@ if(SANITIZER_address STREQUAL "ON")
 endif()
 
 if(SANITIZER_cfi STREQUAL "ON")
-    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags//cfi_sanitizer_flags.txt" CFI_SANITIZER_FLAGS_STRING)
+    message(STATUS "SANITIZER_cfi is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/cfi_sanitizer_flags.txt" CFI_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" CFI_SANITIZER_FLAGS_LIST "${CFI_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${CFI_SANITIZER_FLAGS_LIST})
     target_link_options(main PRIVATE ${CFI_SANITIZER_FLAGS_LIST})
 endif()
 
 if(SANITIZER_dataflow STREQUAL "ON")
-    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags//dataflow_sanitizer_flags.txt" DATAFLOW_SANITIZER_FLAGS_STRING)
+    message(STATUS "SANITIZER_dataflow is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/dataflow_sanitizer_flags.txt" DATAFLOW_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" DATAFLOW_SANITIZER_FLAGS_LIST "${DATAFLOW_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${DATAFLOW_SANITIZER_FLAGS_LIST})
     target_link_options(main PRIVATE ${DATAFLOW_SANITIZER_FLAGS_LIST})
 endif()
 
 if(SANITIZER_hwaddress STREQUAL "ON")
-    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags//hwaddress_sanitizer_flags.txt" HWADDRESS_SANITIZER_FLAGS_STRING)
+    message(STATUS "SANITIZER_hwaddress is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/hwaddress_sanitizer_flags.txt" HWADDRESS_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" HWADDRESS_SANITIZER_FLAGS_LIST "${HWADDRESS_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${HWADDRESS_SANITIZER_FLAGS_LIST})
     target_link_options(main PRIVATE ${HWADDRESS_SANITIZER_FLAGS_LIST})
 endif()
 
+if(SANITIZER_leak STREQUAL "ON")
+    message(STATUS "SANITIZER_leak is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/leak_sanitizer_flags.txt" LEAK_SANITIZER_FLAGS_STRING)
+    string(REPLACE " " ";" LEAK_SANITIZER_FLAGS_LIST "${LEAK_SANITIZER_FLAGS_STRING}")
+    target_compile_options(main PRIVATE ${LEAK_SANITIZER_FLAGS_LIST})
+    target_link_options(main PRIVATE ${LEAK_SANITIZER_FLAGS_LIST})
+endif()
+
 if(SANITIZER_memory STREQUAL "ON")
-    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags//memory_sanitizer_flags.txt" MEMORY_SANITIZER_FLAGS_STRING)
+    message(STATUS "SANITIZER_memory is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/memory_sanitizer_flags.txt" MEMORY_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" MEMORY_SANITIZER_FLAGS_LIST "${MEMORY_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${MEMORY_SANITIZER_FLAGS_LIST})
     target_link_options(main PRIVATE ${MEMORY_SANITIZER_FLAGS_LIST})
 endif()
 
 if(SANITIZER_pointer_overflow STREQUAL "ON")
-    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags//pointer_overflow_sanitizer_flags.txt" POINTER_OVERFLOW_SANITIZER_FLAGS_STRING)
+    message(STATUS "SANITIZER_pointer_overflow is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/pointer_overflow_sanitizer_flags.txt" POINTER_OVERFLOW_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" POINTER_OVERFLOW_SANITIZER_FLAGS_LIST "${POINTER_OVERFLOW_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${POINTER_OVERFLOW_SANITIZER_FLAGS_LIST})
     target_link_options(main PRIVATE ${POINTER_OVERFLOW_SANITIZER_FLAGS_LIST})
 endif()
 
 if(SANITIZER_safe_stack STREQUAL "ON")
-    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags//safe_stack_sanitizer_flags.txt" SAFE_STACK_SANITIZER_FLAGS_STRING)
+    message(STATUS "SANITIZER_safe_stack is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/safe_stack_sanitizer_flags.txt" SAFE_STACK_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" SAFE_STACK_SANITIZER_FLAGS_LIST "${SAFE_STACK_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${SAFE_STACK_SANITIZER_FLAGS_LIST})
     target_link_options(main PRIVATE ${SAFE_STACK_SANITIZER_FLAGS_LIST})
 endif()
 
+if(SANITIZER_shadow_call_stack STREQUAL "ON")
+    message(STATUS "SANITIZER_shadow_call_stack is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/shadow_call_stack_sanitizer_flags.txt" SHADOW_CALL_STACK_SANITIZER_FLAGS_STRING)
+    string(REPLACE " " ";" SHADOW_CALL_STACK_SANITIZER_FLAGS_LIST "${SHADOW_CALL_STACK_SANITIZER_FLAGS_STRING}")
+    target_compile_options(main PRIVATE ${SHADOW_CALL_STACK_SANITIZER_FLAGS_LIST})
+    target_link_options(main PRIVATE ${SHADOW_CALL_STACK_SANITIZER_FLAGS_LIST})
+endif()
+
 if(SANITIZER_thread STREQUAL "ON")
-    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags//thread_sanitizer_flags.txt" THREAD_SANITIZER_FLAGS_STRING)
+    message(STATUS "SANITIZER_thread is ON")
+    file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/thread_sanitizer_flags.txt" THREAD_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" THREAD_SANITIZER_FLAGS_LIST "${THREAD_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${THREAD_SANITIZER_FLAGS_LIST})
     target_link_options(main PRIVATE ${THREAD_SANITIZER_FLAGS_LIST})
 endif()
 
 if(SANITIZER_undefined STREQUAL "ON")
+    message(STATUS "SANITIZER_undefined is ON")
     file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/.flags/${COMPILER_NAME}/undefined_sanitizer_flags.txt" UNDEFINED_SANITIZER_FLAGS_STRING)
     string(REPLACE " " ";" UNDEFINED_SANITIZER_FLAGS_LIST "${UNDEFINED_SANITIZER_FLAGS_STRING}")
     target_compile_options(main PRIVATE ${UNDEFINED_SANITIZER_FLAGS_LIST})
